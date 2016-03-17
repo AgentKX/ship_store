@@ -1,0 +1,16 @@
+<h1>The Ship Yard</h1>
+<h2>Hello and welcome to The Ship Yard, your source for the best ships at rock bottom prices!</h2>
+<div class="row">
+<% @ships.each do |ship| %>
+  <div class="col-md-4">
+    <div class="well">
+      <h3>Name: <%= link_to ship.name, "/ships/#{ship.id}" %></h3>
+      <img src= "<%= ship.image%>">
+      <h3>Price: <%= ship.price %></h3>
+      <h3>Description: <%= ship.description %></h3>
+    </div>
+  </div>
+<% end %>
+  <h3><%= link_to "Create a ship", "/ships/new" %></h3>
+</div>
+
