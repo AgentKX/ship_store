@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   patch '/ships/:id' => 'ships#update'
   delete '/ships/:id' => 'ships#destroy'
 
+  post "/search" => 'products#run_search'
+
 end
  
