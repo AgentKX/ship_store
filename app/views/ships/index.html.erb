@@ -5,7 +5,7 @@
   <div class="col-md-4">
     <div class="well">
       <h3>Name: <%= link_to ship.name, "/ships/#{ship.id}" %></h3>
-      <img src= "<%= ship.image%>">
+      <<a href="/ships/<%= ship.id %>" title="View Ship"><img src="<%= ship.image %>" alt="<%= ship.name %>" class="img-responsive ship_single_image"></a>
       <h3>Price: <%= ship.price %></h3>
       <h3>Description: <%= ship.description %></h3>
     </div>

@@ -5,12 +5,12 @@ class ShipsController < ApplicationController
     sort_order = params[:sort_order]
     if sort_ship && sort_order
       @ships = Ship.order(sort_ship => sort_order)
-  end
+    end
 
-  if params["discount"]
-    @ships = Ship.where("price < ", 2000)
+    if params["discount"]
+      @ships = Ship.where("price < ", 2000)
+    end
   end
-end
   
   def new
     render 'new.html.erb'
@@ -25,7 +25,6 @@ end
     flash[:success] = "Incoming new ship!"
     redirect_to '/ships/#{ship.id}'
   end
-
 
   def show
     if params[:id] == "random"
@@ -42,18 +41,18 @@ end
     render 'edit.html.erb'
   end
 
- def update
+  def update
     ship_id = params[:id]
     @ship = Ship.find_by(id: ship_id)
     @ship.update(
       name: params[:name],
       price: params[:price],
       description: params[:description]
-      )
+    )
     flash[:success] = "Ship Repaired!"
     redirect_to "/ships/#{@ship.id}"
-end
-      
+  end
+
   def destroy
     ship_id = params[:id]
     @ship = Ship.find_by(id: ship_id)
@@ -68,9 +67,4 @@ end
     render "index.html.erb"
   end
 
-  if params ["discount"] == "true"
-    @ships =Ship.where("price < ?", 2000)
-  end
-
-  
 end

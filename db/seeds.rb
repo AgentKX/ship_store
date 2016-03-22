@@ -4,3 +4,6 @@ Ship.create!([
   {name: "Enterprise", price: "2300", image: "https://upload.wikimedia.org/wikipedia/en/5/54/USS_Enterprise_(NCC-1701-A).jpg", description: "Classic NCC1701 with a spacious bridge"},
   {name: "Sorcerer 3000", price: "2000", image: nil, description: "Formerly belonged to Harry Potter"}
 ])
+
+
+

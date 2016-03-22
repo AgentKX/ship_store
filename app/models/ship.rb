@@ -1,4 +1,7 @@
 class Ship < ActiveRecord::Base
+  belongs_to :supplier
+  has_many :images
+  has_many :orders
 
   def sale_message
     if price < 2000
@@ -20,5 +23,6 @@ class Ship < ActiveRecord::Base
   def friendly_updated_at
     updated_at.strftime("%b %e, %l:%M %p")
   end
+  
 end
 

@@ -1,4 +1,4 @@
-<h1>Info On this Shp</h1>
+<h1>Info On this Ship</h1>
 
   <h2>Name: <%= @ship.name %></h2>
   <h4>Description: <%= @ship.description %></h4>
@@ -6,8 +6,28 @@
   <h4>Sale Price: <%= @ship.sale_message %></h4>
   <h4>Tax: <%=@ship.tax %></h4>
   <h4>Total: <%=@ship.total %></h4>
+ 
   
+
+
+<%= form_tag '/orders', method: :post do %>
+  <div>
+    <%= label_tag :quantity %>
+    <%= text_field_tag :quantity %>
+  </div>
+
+  <div>
+    <%= label_tag :ship_id %>
+    <%= text_field_tag :ship_id %>
+  </div>
+
+  <div><button class= "btn btn-success" type="submit">Buy Now</button></div>
+
+  <% end %>
   <%= link_to "Edit this ship", "/ships/#{@ship.id}/edit" %>
   <%= link_to "Back to ships", "/ships" %>
   <%= link_to "Delete this ship", "/ships/#{@ship.id}", method: :delete %>
+
+
+
    
