@@ -10,6 +10,10 @@ class ShipsController < ApplicationController
     if params["discount"]
       @ships = Ship.where("price < ", 2000)
     end
+    
+    if params[:category]
+      @ships = Category.find_by(name: params[:category]).ships
+    end
   end
   
   def new
@@ -22,6 +26,7 @@ class ShipsController < ApplicationController
       price: params[:price], 
       description: params[:description]
       )
+
     flash[:success] = "Incoming new ship!"
     redirect_to '/ships/#{ship.id}'
   end
@@ -42,8 +47,8 @@ class ShipsController < ApplicationController
   end
 
   def update
+    @ship = Ship.find_by(id: params[:id])
     ship_id = params[:id]
-    @ship = Ship.find_by(id: ship_id)
     @ship.update(
       name: params[:name],
       price: params[:price],

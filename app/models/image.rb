@@ -1,3 +1,3 @@
 class Image < ActiveRecord::Base
-  belongs_to :ships
+  belongs_to :ship
 end

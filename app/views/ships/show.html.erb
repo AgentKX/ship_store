@@ -6,11 +6,13 @@
   <h4>Sale Price: <%= @ship.sale_message %></h4>
   <h4>Tax: <%=@ship.tax %></h4>
   <h4>Total: <%=@ship.total %></h4>
- 
   
-
-
-<%= form_tag '/orders', method: :post do %>
+  <ul><% @ship.categories.each do |category| %>
+  <li><%= category.name %></li>
+  <% end %>
+ 
+ </ul>
+  <%= form_tag '/orders', method: :post do %>
   <div>
     <%= label_tag :quantity %>
     <%= text_field_tag :quantity %>
