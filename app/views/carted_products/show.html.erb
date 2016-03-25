@@ -1,34 +1,24 @@
 <h4>Product Added to your cart!</h4>
-  <h2>Name: <%= @ship.name %></h2>
-  <h4>Description: <%= @ship.description %></h4>
-  <h4>Price: <%= @ship.price %></h4>
-  <h4>Sale Price: <%= @ship.sale_message %></h4>
-  <h4>Tax: <%=@ship.tax %></h4>
-  <h4>Total: <%=@ship.total %></h4>
-  
-  <ul><% @ship.categories.each do |category| %>
-  <li><%= category.name %></li>
-  <% end %>
- 
- </ul>
-  <%= form_tag '/carted_products', method: :post do %>
-  <div>
-    <%= label_tag :quantity %>
-    <%= text_field_tag :quantity %>
-  </div>
 
-  <div>
-    <%= label_tag :ship_id %>
-    <%= text_field_tag :ship_id %>
-  </div>
-
-  <div><button class= "btn btn-success" type="submit">Add to Cart</button></div>
-
-  <% end %>
-  <%= link_to "Edit this ship", "/ships/#{@ship.id}/edit" %>
-  <%= link_to "Back to ships", "/ships" %>
-  <%= link_to "Delete this ship", "/ships/#{@ship.id}", method: :delete %>
-
-
-
-   
+<div class="container">
+ <table class="table">
+   <thead>
+     <tr>
+       <th>#</th>
+       <th>Title</th>
+       <th>Quantity</th>
+       <th>Price</th>
+     </tr>
+   </thead>
+   <tbody>
+     <% @carted_products.each do |carted_product| %>
+       <tr>
+         <th scope="row"><%= carted_product.id %></th>
+         <td><%= carted_product.ship.name %></td>
+         <td><%= carted_product.quantity %></td>
+         <td><%= number_to_currency(carted_product.ship.price) %></td>
+       </tr>
+     <% end %>
+   </tbody>
+ </table>
+</div>
