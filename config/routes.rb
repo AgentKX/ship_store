@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   patch '/ships/:id' => 'ships#update'
   delete '/ships/:id' => 'ships#destroy'
 
-  # post "/search" => 'products#run_search'
+  post '/carted_products' => 'carted_products#create'
+  get '/carted_products/:id' => 'carted_products#show'
+
+  post "/search" => 'products#run_search'
 
   post '/orders' => 'orders#create'
   get '/orders/:id' => 'orders#show'
