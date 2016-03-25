@@ -11,9 +11,9 @@ class CartedProductsController < ApplicationController
 
   def show
     if current_user
-    @carted_products = CartedProduct.where("status LIKE? AND user_id = ?", "carted" current_user.id)
+    @carted_products = CartedProduct.where("status LIKE? AND user_id = ?", "carted", current_user.id)
     render "show.html.erb"
   else redirect_to '/users/sign_in'
     end
-end
+  end
 end

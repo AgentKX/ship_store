@@ -1,24 +1,27 @@
 <h4>Product Added to your cart!</h4>
 
 <div class="container">
- <table class="table">
-   <thead>
-     <tr>
-       <th>#</th>
-       <th>Title</th>
-       <th>Quantity</th>
-       <th>Price</th>
-     </tr>
-   </thead>
-   <tbody>
-     <% @carted_products.each do |carted_product| %>
-       <tr>
-         <th scope="row"><%= carted_product.id %></th>
-         <td><%= carted_product.ship.name %></td>
-         <td><%= carted_product.quantity %></td>
-         <td><%= number_to_currency(carted_product.ship.price) %></td>
-       </tr>
-     <% end %>
-   </tbody>
- </table>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @carted_products.each do |carted_product| %>
+        <tr>
+          <th scope="row"><%= carted_product.id %></th>
+          <td><%= carted_product.ship.name %></td>
+          <td><%= carted_product.quantity %></td>
+          <td><%= number_to_currency(carted_product.ship.price) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= form_tag '/orders', method: :post do %>
+    <div><button class= "btn btn-success" type="submit">Buy Now!</button></div>
+  <% end %>
 </div>
