@@ -3,6 +3,7 @@ class CartedProductsController < ApplicationController
     carted_products = CartedProduct.create(
       quantity: params[:quantity],
       ship_id: params[:ship_id],
+      status: "carted",
       user_id: current_user.id
     )
     redirect_to "/carted_products/#{carted_products.id}"
