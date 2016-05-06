@@ -1,32 +1,24 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!
-  
   def create
-    @carted_products = current_user.carted_products.where(status: 'carted')
-
-    subtotal = 0
-    @carted_products.each do |carted_product|
-      quantity = carted_product.quantity
-      price = carted_product.product.price
-      subtotal += quantity * price
-    end
-    tax = subtotal * 0.09
-    total = subtotal + tax
+    @ship = Ship.find_by(id: params[:ship_id])
+    subtotal = @ship.price.to_i * params[:quantity].to_i
+    tax = @ship.tax.to_i * params[:quantity].to_i
+    total = @ship.total.to_i * params[:quantity].to_i
 
     order = Order.create(
-      user_id: current_user.id,
-      subtotal: subtotal,
-      tax: tax,
-      total: total
+    quantity: params[:quantity],
+    ship_id: params[:ship_id],
+    user_id: current_user.id,
+    subtotal: subtotal,
+    tax: tax,
+    total: total
+
     )
-
-    @carted_products.update_all(status: "purchased", order_id: order.id)
-
     redirect_to "/orders/#{order.id}"
   end
 
   def show
     @order = Order.find_by(id: params[:id])
-    render 'show.html.erb'
+    render "show.html.erb"
   end
 end

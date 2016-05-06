@@ -28,7 +28,7 @@
   <% end %>
   <%= link_to "Edit this ship", "/ships/#{@ship.id}/edit" %>
   <%= link_to "Back to ships", "/ships" %>
-  <%= link_to "Delete this ship", "/ships/#{@ship.id}", {method: :delete, class: "btn btn-danger" }%>
+  <%= link_to "Delete this ship", "/ships/#{@ship.id}", method: :delete %>
 
 
 

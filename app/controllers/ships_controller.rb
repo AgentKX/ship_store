@@ -1,6 +1,4 @@
 class ShipsController < ApplicationController
-  before_action :authenticate_admin!, except: [:index, :show, :run_search]
-
   def index
     @ships = Ship.all
     sort_ship = params[:sort]
@@ -18,6 +16,21 @@ class ShipsController < ApplicationController
     end
   end
   
+  def new
+    render 'new.html.erb'
+  end
+
+  def create
+    Ship.create(
+      name: params[:name], 
+      price: params[:price], 
+      description: params[:description]
+    )
+
+    flash[:success] = "Incoming new ship!"
+    redirect_to '/ships/#{ship.id}'
+  end
+
   def show
     if params[:id] == "random"
       ships = Ship.all
@@ -26,21 +39,11 @@ class ShipsController < ApplicationController
       @ship = Ship.find_by(id: params[:id])
     end
   end
-
-  def new
-  end
-
-  def create
-    Ship.create(
-      name: params[:name], 
-      price: params[:price], 
-      description: params[:description]
-      )
-    end
-end
   
   def edit
-    @ship = Ship.find_by(id: params[:id])
+    ship_id = params[:id]
+    @ship = Ship.find_by(id: ship_id)
+    render 'edit.html.erb'
   end
 
   def update
@@ -60,14 +63,18 @@ end
     @ship = Ship.find_by(id: ship_id)
     @ship.destroy
     flash[:warning] = "Prepare for impact!"
-    redirect_to "/"
-    end
+    redirect_to '/ships'
+  end
   
   def run_search
     search_term = params[:search]
     @ships = Ship.where("name LIKE ?", "%" + search_term + "%")
     render "index.html.erb"
   end
+
+end
+
+
 
   private
 
